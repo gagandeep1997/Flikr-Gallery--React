@@ -2,8 +2,8 @@ import classes from './Header.module.css';
 
 const Header = () => {
     return (
-        <header>
-            <div className="container-fluid">
+        <header className='bg-light'>
+            <div className="container bg-white">
                 <div className="row">
                     <div className="col-8">
                         <h1 className={classes.headerName}>LBI</h1>
