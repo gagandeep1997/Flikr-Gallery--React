@@ -1,10 +1,11 @@
 import Header from './components/Header';
-import classes from './styles/css/App.module.css';
+import Footer from './components/Footer';
 
 function App() {
     return (
-        <div className={`${classes.gridview}`}>
+        <div>
             <Header />
+            <Footer />
         </div>
     );
 }
