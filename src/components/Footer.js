@@ -1,6 +1,4 @@
-import classes from "./Footer.module.css";
-
-const Footer = () => {
+const Footer = (props) => {
     return (
         <footer className='bg-light'>
             <div className="container bg-white">
@@ -8,7 +6,7 @@ const Footer = () => {
                     <div className="col-6">
                         <div className="row">
                             <div className="col-12">
-                                <p className="mb-2">Showing page 1 of 118</p>
+                                <p className="mb-2">{`Showing page ${props.page} of ${props.total_pages}`}</p>
                             </div>
                         </div>
                         <div className="row">
