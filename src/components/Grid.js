@@ -12,11 +12,11 @@ const Grid = (props) => {
             <div className="container bg-white">
                 <div className="row">
                     <div className="col-12 text-end">
-                        <button type="button" className="btn btn-danger">View slideshow</button>
+                        <button type="button" className="btn btn-danger" onClick={props.toggleGridView}>{props.showgrid ? "View slideshow":"View Grid"}</button>
                     </div>
                 </div>
                 <div className="row">
-                    {data}
+                    {props.showgrid && data}
                 </div>
             </div>
         </div>
