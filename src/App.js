@@ -20,15 +20,31 @@ function App() {
         fetchdata(url);
     },[page]);
 
-    console.log(photos);
     if(photos!==undefined){
         total_pages = photos.pages;
     }
+
+    const previousPageHandler = () => {
+        if(page!==1){
+            setPage((page) => page - 1);
+        }
+    }
+
+    const nextPageHandler = () => {
+        setPage((page) => page + 1);
+    }
+
+    function goToPageHandler(value) {
+        setPage(Number(value));
+    }
+
+    console.log(photos);
+
     return (
         <div>
             <Header />
-            {photos!==undefined && <Grid photos={photos.photo} />}
-            <Footer total_pages={total_pages} page={page} />
+            {photos && <Grid photos={photos.photo} />}
+            <Footer total_pages={total_pages} page={page} previousPageButtonHandler={previousPageHandler} nextPageButtonHandler={nextPageHandler} goToPageButtonHandler={goToPageHandler} />
         </div>
     );
 }
