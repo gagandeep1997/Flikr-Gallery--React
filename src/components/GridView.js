@@ -1,6 +1,5 @@
 import { useState , useEffect} from 'react';
 import Grid from './Grid.js';
-import Footer from './Footer.js';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -48,13 +47,10 @@ const GridView = () => {
 
     return (
         <div>
-            {photos ? <Grid photos={photos.photo} toggleGridView={toggleGridView} showgrid={showgrid} /> : <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open
-            >
+            {photos ? <Grid photos={photos.photo} toggleGridView={toggleGridView} showgrid={showgrid} page={page} total_pages={total_pages} nextPageHandler={nextPageHandler} previousPageHandler={previousPageHandler} goToPageHandler={goToPageHandler} /> 
+            : <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open>
                 <CircularProgress color="inherit" />
-            </Backdrop>}
-            {showgrid && <Footer total_pages={total_pages} page={page} previousPageButtonHandler={previousPageHandler} nextPageButtonHandler={nextPageHandler} goToPageButtonHandler={goToPageHandler} />}
+              </Backdrop>}
         </div>
     );
 }
