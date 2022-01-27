@@ -12,7 +12,7 @@ const Footer = (props) => {
                 <div className="col-6">
                     <div className="row">
                         <div className="col-12">
-                            <p className="mb-2">{`Showing page ${props.page} of ${props.total_pages}`}</p>
+                            <p className="mb-2">{`Showing page ${props.Page} of ${props.TotalPages}`}</p>
                         </div>
                     </div>
                     <div className="row">

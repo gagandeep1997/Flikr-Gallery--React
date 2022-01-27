@@ -17,6 +17,38 @@ img{
 }
 
 .slideshow_img{
-    width: 500px;
-    height: 300px;
+    width: 560px;
+    height: 320px;
+}
+
+.ms-2.title{
+    margin-bottom: 0 !important;
+}
+
+.text-end.me-2.download-file{
+    margin-bottom: 0 !important;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #d62424;
+    overflow: hidden;
+    width: 200%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.text {
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
 }

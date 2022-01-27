@@ -1,14 +1,53 @@
-import SlideShow from './SlideShow';
+import { useState , useEffect } from 'react';
+import SlideShow from './SlideShow/SlideShow';
 import Footer from './Footer.js';
+import GridViewer from './GridViewer';
+import SlideShowViewer from './SlideShow/SlideShowViewer';
 
 const Grid = (props) => {
-    const data = props.photos.map((pic) => {
-        return (
-            <div className="col-3 d-flex align-items-center mb-4" key={pic.id}>
-                <img src={`https://live.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}_m.jpg`} alt="text123" />
-            </div>
-        );
-    });
+    const [ GridPhotos , setGridPhotos ] = useState();
+    const [ SlideShowPhotos , setSlideShowPhotos ] = useState();
+
+    useEffect(() => {
+        var i=0;
+        const Grid = props.PhotosArr.map((pic) => {
+            i++;
+            return (
+                <GridViewer key={pic.id} serverid={pic.server} id={pic.id} secret={pic.secret} goToPhotoHandler={props.goToPhotoHandler} dataid={i} />
+            );
+        });
+
+        i=0;
+        const SlideShow = props.PhotosArr.map((pic) => {
+            if(props.isPrev){
+                if(i===19){
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="active" />
+                    );
+                }else{
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="" />
+                    );
+                }
+            }else{
+                if(i===0){
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="active" />
+                    );
+                }else{
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="" />
+                    );
+                }
+            }
+        })
+        setGridPhotos(Grid);
+        setSlideShowPhotos(SlideShow);
+    },[props.PhotosArr,props.isPrev,props.goToPhotoHandler])
     
     return (
         <div className="bg-light" style={{minHeight:"350px"}}>
@@ -18,12 +57,14 @@ const Grid = (props) => {
                         <button type="button" className="btn btn-danger" onClick={props.toggleGridView}>{props.showgrid ? "View slideshow":"View Grid"}</button>
                     </div>
                 </div>
-                <div className="row">
-                    {props.showgrid && data}
-                    {!props.showgrid && <SlideShow photos={props.photos} page={props.page} total_pages={props.total_pages} nextPageHandler={props.nextPageHandler} previousPageHandler={props.previousPageHandler} />}
+                <div className={`row ${!props.showgrid ? "d-none" : ""}`}>
+                    {GridPhotos}
                 </div>
-                <div className="row">
-                    {props.showgrid && <Footer total_pages={props.total_pages} page={props.page} previousPageButtonHandler={props.previousPageHandler} nextPageButtonHandler={props.nextPageHandler} goToPageButtonHandler={props.goToPageHandler}/>}
+                <div className={`row ${props.showgrid ? "d-none" : ""}`}>
+                    <SlideShow TotalPages={props.TotalPages} SlideShowPhotos={SlideShowPhotos} nextPhotoHandler={props.nextPhotoHandler} previousPhotoHandler={props.previousPhotoHandler} PhotosArr={props.PhotosArr} photono={props.photono} IsGridPhotoClicked={props.IsGridPhotoClicked} />
+                </div>
+                <div className={`row ${!props.showgrid ? "d-none" : ""}`}>
+                    {props.showgrid && <Footer TotalPages={props.TotalPages} Page={props.Page} previousPageButtonHandler={props.previousPageHandler} nextPageButtonHandler={props.nextPageHandler} goToPageButtonHandler={props.goToPageHandler}/>}
                 </div>
             </div>
         </div>
