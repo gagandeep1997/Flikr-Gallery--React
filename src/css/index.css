@@ -29,26 +29,24 @@ img{
     margin-bottom: 0 !important;
 }
 
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #d62424;
-    overflow: hidden;
-    width: 200%;
-    height: 0;
-    transition: .5s ease;
+.download-btn {
+	position: absolute;
+	bottom: -50px;
+	left: 12px;
+	right: 13px;
+	text-align: center;
+	padding: 10px 15px;
+	background: red;
+	color: white;
+	text-decoration: none;
+    transition: .5s all ease-in-out;
 }
 
-.text {
+.img-grid:hover .download-btn{
+    bottom: 0;
+}
+
+.download-btn:hover{
     color: white;
-    font-size: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
+    text-decoration: underline;
 }

@@ -1,12 +1,13 @@
-import Header from './components/Header';
-import GridView from './components/GridView';
+import { Fragment } from 'react';
+import Header from './components/Header/Header';
+import CommonLogicalComponent from './components/CommonLogicalComponent';
 
 function App() {
     return (
-        <div>
+        <Fragment>
             <Header />
-            <GridView />
-        </div>
+            <CommonLogicalComponent />
+        </Fragment>
     );
 }
 

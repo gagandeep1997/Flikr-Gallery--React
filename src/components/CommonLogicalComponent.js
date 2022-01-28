@@ -1,9 +1,9 @@
 import { useState , useEffect, useCallback} from 'react';
-import Grid from './Grid.js';
+import Grid from './Grid/Grid';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const GridView = () => {
+const CommonLogicalComponent = () => {
     const [ PhotosObj , setPhotosObj ] = useState();
     const [ Page , setPage ] = useState(1);
     const [ photono , setPhotono ] = useState(1);
@@ -92,7 +92,7 @@ const GridView = () => {
 
     const goToPhotoHandler = useCallback((event) => {
         setShowGrid((showgrid) => !showgrid);
-        setPhotono((Page-1)*20 + Number(event.currentTarget.children[0].attributes[2].value));
+        setPhotono((Page-1)*20 + Number(event.currentTarget.attributes[2].value));
         setIsGridPhotoClicked(true);
     },[Page]);
     
@@ -106,4 +106,4 @@ const GridView = () => {
     );
 }
 
-export default GridView;
+export default CommonLogicalComponent;

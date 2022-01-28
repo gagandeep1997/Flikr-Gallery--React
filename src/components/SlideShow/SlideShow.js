@@ -1,10 +1,44 @@
-import { Fragment , useState } from "react";
+import { Fragment , useState , useEffect } from "react";
 import SlideShowCarousel from './SlideShowCarousel';
 import SlideShowFooter from './SlideShowFooter';
+import SlideShowViewer from './SlideShowViewer';
 
 const SlideShow = (props) => {
     const [ isPrevButtonDisabled , setIsPrevButtonDisabled ] = useState(true);
+    const [ SlideShowPhotos , setSlideShowPhotos ] = useState();
     var TotalPhotos = props.TotalPages*20;
+
+    useEffect(() => {
+        var i=0;
+        const SlideShow = props.PhotosArr.map((pic) => {
+            if(props.isPrev){
+                if(i===19){
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="active" />
+                    );
+                }else{
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="" />
+                    );
+                }
+            }else{
+                if(i===0){
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="active" />
+                    );
+                }else{
+                    i++;
+                    return(
+                        <SlideShowViewer key={pic.id} dataId={i} server={pic.server} id={pic.id} secret={pic.secret} IsActive="" />
+                    );
+                }
+            }
+        });
+        setSlideShowPhotos(SlideShow);   
+    },[props.PhotosArr,props.isPrev]);
 
     const nextPhotoClickListner = () => {
         if(props.photono === 1){
@@ -34,7 +68,7 @@ const SlideShow = (props) => {
     
     return (
         <Fragment>
-            <SlideShowCarousel SlideShowPhotos={props.SlideShowPhotos} photono={props.photono} isPrevButtonDisabled={isPrevButtonDisabled} prevPhotoClickListner={prevPhotoClickListner} nextPhotoClickListner={nextPhotoClickListner} />
+            <SlideShowCarousel SlideShowPhotos={SlideShowPhotos} photono={props.photono} isPrevButtonDisabled={isPrevButtonDisabled} prevPhotoClickListner={prevPhotoClickListner} nextPhotoClickListner={nextPhotoClickListner} />
             <SlideShowFooter title={title} photono={props.photono} TotalPhotos={TotalPhotos} imageURL={imageURL} />
         </Fragment>
     );

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const Footer = (props) => {
+const GridFooter = (props) => {
     const pageInputRef = useRef();
 
     const goToPageHandler = () => {
@@ -32,4 +32,4 @@ const Footer = (props) => {
     );
 }
 
-export default Footer;
+export default GridFooter;
