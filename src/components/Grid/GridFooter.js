@@ -1,7 +1,9 @@
-import { useRef } from "react";
+import { useRef , useContext } from "react";
+import ContextApiStore from '../../store/ContextApiStore';
 
 const GridFooter = (props) => {
     const pageInputRef = useRef();
+    const ctx = useContext(ContextApiStore);
 
     const goToPageHandler = () => {
         props.goToPageButtonHandler(pageInputRef.current.value);
@@ -12,7 +14,7 @@ const GridFooter = (props) => {
                 <div className="col-6">
                     <div className="row">
                         <div className="col-12">
-                            <p className="mb-2">{`Showing page ${props.Page} of ${props.TotalPages}`}</p>
+                            <p className="mb-2">{`Showing page ${ctx.Page} of ${props.TotalPages}`}</p>
                         </div>
                     </div>
                     <div className="row">
