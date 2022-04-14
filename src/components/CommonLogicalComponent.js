@@ -30,7 +30,20 @@ const CommonLogicalComponent = () => {
         }
     }
 
+    const nextPageHandler = () => {
+        ctx.Loader(true);
+        ctx.PageIncrement();
+        ctx.nextPagePhotoChange();
+        if(isPrev===true){
+            setIsPrev(false);
+        }
+        if(IsGridPhotoClicked){
+            setIsGridPhotoClicked(false);
+        }
+    }
+
     const previousPhotoHandler = () => {
+        console.log(ctx.Page)
         if(ctx.Page !== 1){
             if((((ctx.Page-1)*20)+1) === ctx.photono){
                 ctx.Loader(true);
@@ -44,17 +57,6 @@ const CommonLogicalComponent = () => {
         }
     }
 
-    const nextPageHandler = () => {
-        ctx.Loader(true);
-        ctx.PageIncrement();
-        ctx.nextPagePhotoChange();
-        if(isPrev===true){
-            setIsPrev(false);
-        }
-        if(IsGridPhotoClicked){
-            setIsGridPhotoClicked(false);
-        }
-    }
 
     const nextPhotoHandler = () => {
         if(ctx.Page*20 === ctx.photono){
@@ -78,16 +80,16 @@ const CommonLogicalComponent = () => {
             setIsGridPhotoClicked(false);
         }
     }
-
-    const toggleGridView = () => {
-        setShowGrid((showgrid) => !showgrid);
-    }
-
+    
     const goToPhotoHandler = useCallback((event) => {
         setShowGrid((showgrid) => !showgrid);
         ctx.GoToPhoto(event);
         setIsGridPhotoClicked(true);
     },[ctx]);
+
+    const toggleGridView = () => {
+        setShowGrid((showgrid) => !showgrid);
+    }
     
     return (
         <div>
