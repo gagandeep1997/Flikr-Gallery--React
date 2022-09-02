@@ -1,5 +1,5 @@
 # Flikr Gallery
-An Flikr Gallery shows images in two formats - In SlideShow and in grid format. A User can switch into any mode. 
+An Flikr Gallery fetch images from an api and shows images in slideshow and in grid format. A User can switch into any mode. A slideshow contains 20 images per page and user can go any page. if the user clicks on any photo, it will open that image in slideshow.
 
 <b>Tech Stack</b>
 1. React
