@@ -1,4 +1,5 @@
 # Flikr Gallery
+An Flikr Gallery shows images in two formats - In SlideShow and in grid format. A User can switch into any mode. 
 
 <b>Tech Stack</b>
 1. React
